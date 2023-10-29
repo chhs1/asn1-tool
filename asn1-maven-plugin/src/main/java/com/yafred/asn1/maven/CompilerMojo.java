@@ -61,6 +61,9 @@ public class CompilerMojo extends AbstractMojo {
     @Parameter(defaultValue = "${project.build.directory}/generated-sources/asn")
     private File outputDirectory;
 
+    @Parameter(defaultValue = "")
+    private String packagePrefix;
+
     @Override
     public void execute() throws MojoExecutionException {
         if (!inputFile.isFile()) {
@@ -105,6 +108,7 @@ public class CompilerMojo extends AbstractMojo {
 		// generate code
 		Generator generator = new Generator();
 		Options options = new Options();
+        options.setPackagePrefix(packagePrefix);
 		options.setOutputPath(outputDirectory.getAbsolutePath());
         getLog().info("Generating Java code in " + outputDirectory.getAbsolutePath());
 		generator.setOptions(options);

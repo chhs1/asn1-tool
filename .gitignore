@@ -9,3 +9,4 @@ null
 .metals
 .bloop
 mvn.log
+.idea
